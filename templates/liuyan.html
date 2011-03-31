@@ -1,0 +1,65 @@
+{% extends "zhuye.html" %}
+style type="text/css">
+    ul.errorlist {
+        margin: 0;
+        padding: 0;
+    }
+    .errorlist li {
+        background-color: red;
+        color: white;
+        display: block;
+        font-size: 10px;
+        margin: 0 0 3px;
+        padding: 4px 5px;
+    }
+</style>
+{% block title %}-在线留言{% endblock %}
+{% block content %}
+
+<div><a href='liuyanold.html'>往日留言</a></div>
+<h3 id=''>在线留言</h3>
+  {% if errors %}
+         <ul>
+             {% for error in errors %}
+             <li>{{ error }}</li>
+             {% endfor %}
+         </ul>
+     {% endif %}
+     <form action="" method="post">
+         <div class="field">
+             {{ form.sub.errors }}
+             <label for="id_sub">主&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp题:</label>
+             {{ form.sub }}
+         </div>
+         <div class="field{% if form.content.errors %} errors{% endif %}">
+           {% if form.content.errors %}
+             <ul>
+             {% for error in form.content.errors %}
+               <li><strong>{{ error }}</strong></li>
+             {% endfor %}
+             </ul>
+           {% endif %}
+             <label for="id_content">内&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp容:</label>
+             {{ form.content }}
+         </div>
+         <div class="field">
+             {{ form.name.errors }}
+             <label for="id_name">公司名称:</label>
+             {{ form.name }}
+         </div>
+         
+         <div class="field">
+             {{ form.contact.errors }}
+             <label for="id_contact">联&nbsp&nbsp系&nbsp&nbsp人:</label>
+             {{ form.contact }}
+         </div>
+         
+         <div class="field">
+             {{ form.email.errors }}
+             <label for="id_email">电子邮箱:</label>
+             {{ form.email }}
+         </div>
+
+         <center><input type="submit" value="提交"></center>
+     </form>
+{% endblock %}
