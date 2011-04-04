@@ -1,0 +1,48 @@
+{% extends "zhuye.html" %}
+{% block title %}-门店展示{% endblock %}
+{% block content %}
+ <h2><li><font color="#0099FF"><strong>门店展示</strong></font></li></h2>
+  <table border="1" width="100%">
+      <tr>
+        <th width="10%">编号</th>
+        <th width="15%">名称</th>
+        <th width="50%">展图</th>
+        <th width="15%">简介</th>
+        <th width="10%">关注度</th>
+      </tr>
+    {% for contact in contacts.object_list %}
+      <tr>
+        <td>{{ contact.id }}</td>
+        <td><a href ="shop/{{ contact.id }}/?page={{ contact.id }}" target ="_blank">{{ contact.name }}</a></td>
+        <td><a href ="shop/{{ contact.id }}/?page={{ contact.id }}" target ="_blank"><img border="0" src={{ contact.img }} width="200" height="140"/></a></td>
+        <td>{{ contact.node }}</td>
+        <td>{{ contact.hoter }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+{% for contact in contacts.object_list %}
+    {# Each "contact" is a Contact model object. #}
+    {{ contact.full_name|upper }}<br />
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+  
+
+{% endblock %}

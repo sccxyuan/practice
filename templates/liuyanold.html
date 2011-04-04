@@ -3,12 +3,12 @@
 {% block content %}
 
 <center><h3 id=''><strong>留言列表</strong></h3></center>
- <table>
+ <table border="1" width="100%">
      <tr>
        <th>主题</th>
        <th>内容</th>
        <th>公司名称</th>
-       <th>公司地址</th>
+       
        <th>联系人</th>
        <th>e-mail</th>
      </tr>
@@ -18,11 +18,15 @@
        <td>{{ contact.sub }}</td>
        <td>{{ contact.content }}</td>
        <td>{{ contact.name }}</td>
-       <td>{{ contact.address }}</td>
+       
        <td>{{ contact.contact }}</td>
        <td>{{ contact.email }}</td>
      </tr>
    {% endfor %}
  </table>
+ <hr >
+ <span class="current">
+     Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+ </span>
 
 {% endblock %}

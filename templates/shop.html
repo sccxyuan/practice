@@ -1,0 +1,57 @@
+{% extends "zhuye.html" %}
+
+{% block title %}-门店展示{% endblock %}
+
+
+{% block content %}
+<table> 
+  <h2><li><font color="#0099FF"><strong>门店展示</strong></font></li></h2>
+{% for contact in contacts.object_list %}
+  
+    <tr>
+       <td colspan="2" align="center" class="tit"><strong>{{ contact.name }}</strong></td>
+    </tr>
+    <tr> 
+      <td  align="center" style="border-top: 1 solid #666666;border-bottom: 1 solid #666666">发布者：{{ contact.writer }} 发布时间：{{ contact.wtime }} 阅读：<font color="#FF0000">{{ contact.hoter }}</font>次
+      </td>
+    </tr>
+    <tr> 
+      <td align="center" class=black id=fontzoom colspan="2"><br>
+        <img border="0" src=/{{ contact.img }} width="300" height="250"/>
+        <P><FONT style="FONT-SIZE: 14pt">{{ contact.node }}</FONT></P>
+      </td>
+    </tr>
+    <tr align="right"> 
+      <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <td><p>&nbsp;</p>
+{% endfor %}
+      <br>
+{% for contact in contacts.object_list %}
+    {# Each "contact" is a Contact model object. #}
+    {{ contact.full_name|upper }}<br />
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+      <li> 
+      <a href="/mendian.html">返回上级</a> 
+      </td>
+    </tr>
+</table>
+</table>
+  
+ {% endblock %}

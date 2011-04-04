@@ -13,6 +13,8 @@ class Article(models.Model):
     
 class Shop(models.Model):
     name=models.CharField(max_length=30)
+    writer=models.CharField(max_length=30)
+    wtime=models.DateTimeField(default=datetime.datetime.now())
     img=models.ImageField('Image',upload_to='indeximages')
     node=models.TextField(blank=True)
     hoter=models.IntegerField(blank=True)
